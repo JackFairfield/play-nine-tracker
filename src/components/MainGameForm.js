@@ -8,6 +8,7 @@ function MainGameForm({ gameStarted, rounds, setRounds }) {
     <>
       <div style={{ display: gameStarted ? '' : 'none' }}>
         <RoundStepper rounds={rounds} activeRound={activeRound} setActiveRound={setActiveRound} />
+        <hr />
         <ScoreInputForm
           activeRound={activeRound}
           rounds={rounds}
