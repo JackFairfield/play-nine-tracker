@@ -50,6 +50,7 @@ export default function ScoreInputForm({
   rounds,
   setRounds,
   setActiveRound,
+  setGameOver,
 }) {
   const classes = useStyles();
   function handleScoreChange(e, playerIndex) {
@@ -181,6 +182,7 @@ export default function ScoreInputForm({
           </CardContent>
           <CardActions>
             <RoundButtons
+              setGameOver={setGameOver}
               activeRound={activeRound}
               rounds={rounds}
               setActiveRound={setActiveRound}
