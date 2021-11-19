@@ -54,7 +54,6 @@ export default function ScoreInputForm({
   const classes = useStyles();
   function handleScoreChange(e, playerIndex) {
     const isValid = isValidInput(e.target.value);
-    console.log(isValid);
     if (!isValid) {
       console.log(e.target.value);
       return false;
@@ -64,7 +63,7 @@ export default function ScoreInputForm({
         if (activeRound === i) {
           if (e.target.value === "") {
             round.scores[playerIndex].score = "";
-          } else if (Number(e.target.value)) {
+          } else if (typeof Number(e.target.value) === "number") {
             round.scores[playerIndex].score = Number(e.target.value);
           } else if (e.target.value === "-") {
             round.scores[playerIndex].score = "-";
@@ -160,7 +159,7 @@ export default function ScoreInputForm({
                             showZero
                             max={999}
                             anchorOrigin={{
-                              vertical: "bottom",
+                              vertical: "top",
                               horizontal: "right",
                             }}
                             classes={{ badge: classes.badge }}

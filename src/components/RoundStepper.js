@@ -12,7 +12,7 @@ const ColorlibConnector = withStyles({
   active: {
     '& $line': {
       // backgroundImage: 'linear-gradient( 136deg, rgb(50, 205, 50) 0%, rgb(35,144,35) 50%, rgb(1, 50, 32) 100%)',
-      backgroundColor: 'red'
+      backgroundColor: 'darkgreen'
     },
   },
   completed: {
@@ -41,7 +41,7 @@ const useColorlibStepIconStyles = makeStyles({
     alignItems: 'center',
   },
   active: {
-    backgroundImage: 'linear-gradient( 136deg, rgb(255,0,0) 0%, rgb(231,0,0) 50%, rgb(75,0,0) 100%)',
+    backgroundImage: 'linear-gradient( 136deg, rgb(0,200,0) 0%, rgb(0,200,0) 50%, rgb(0,100,0) 100%)',
     boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
   },
   completed: {

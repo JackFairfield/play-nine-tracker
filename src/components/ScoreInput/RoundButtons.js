@@ -20,8 +20,6 @@ export default function RoundButtons({
   };
 
   return (
-    <div>
-      <div>
         <div>
           <Button
             variant="contained"
@@ -35,7 +33,6 @@ export default function RoundButtons({
             {activeRound === rounds.length - 1 ? "Finish" : "Next"}
           </Button>
         </div>
-      </div>
-    </div>
+      
   );
 }
