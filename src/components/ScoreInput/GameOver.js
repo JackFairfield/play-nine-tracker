@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { DataContext } from "../../DataContext";
-
 function getSortedTotalScores(rounds) {
   let scores = {};
 
@@ -24,7 +21,6 @@ export default function GameOver({
   setActiveRound,
   setGameOver,
 }) {
-  const { test } = useContext(DataContext);
   const scores = getSortedTotalScores(rounds);
 
   return (
