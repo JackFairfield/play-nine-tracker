@@ -1,36 +1,67 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
-import MainGameForm from "./components/MainGameForm";
+import PlayerBadge from "./components/PlayerBadge";
+import Paper from "@mui/material/Paper";
 
 import michellePhoto from "./images/michelle.jpg";
 import lexyPhoto from "./images/lexy.jpg";
 import jackPhoto from "./images/jack.jpg";
 
-function getDefaultRoundsData(players) {
-  let rounds = [];
-  for (let i = 0; i < 9; i++) {
-    rounds.push({
-      scores: [
-        { name: "Jack", score: 0, photo: jackPhoto },
-        { name: "Michelle", score: 0, photo: michellePhoto },
-        { name: "Lexy", score: 0, photo: lexyPhoto },
-      ],
-    });
-  }
-  return rounds;
-}
+import Grid from "@mui/material/Grid";
+import PlayerRow from "./components/PlayerRow";
+import NumberRow from "./components/NumberRow";
+
+import arrowKeyHandler from "./arrowKeyHandler";
 
 function App() {
-  const [rounds, setRounds] = useState(getDefaultRoundsData());
+  const [players, setPlayers] = useState([
+    { name: "Jack", score: 0, photo: jackPhoto, rounds: {} },
+    { name: "Michelle", score: 0, photo: michellePhoto, rounds: {} },
+    { name: "Lexy", score: 0, photo: lexyPhoto, rounds: {} },
+  ]);
+
+  function downHandler(e) {
+    arrowKeyHandler(e, players);
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", downHandler);
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+    };
+  });
+
+  function isValidInput(str) {
+    var code, i, len;
+    if (str === "") {
+      return true;
+    }
+
+    for (i = 0, len = str.length; i < len; i++) {
+      code = str.charCodeAt(i);
+      if (!(code > 47 && code < 58) && !(code === 45)) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <MainGameForm
-          rounds={rounds}
-          setRounds={setRounds}
-        />
+        <Paper>
+          <NumberRow />
+          {players.map((player, i) => (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <PlayerBadge player={player} />
+              <Grid container spacing={2}>
+                <PlayerRow player={player} setPlayers={setPlayers} />
+              </Grid>
+              <br />
+            </div>
+          ))}
+        </Paper>
       </header>
     </div>
   );

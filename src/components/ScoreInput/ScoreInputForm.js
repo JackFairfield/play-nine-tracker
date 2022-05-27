@@ -27,49 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function isValidInput(str) {
-  var code, i, len;
-  if (str === "") {
-    return true;
-  }
 
-  for (i = 0, len = str.length; i < len; i++) {
-    code = str.charCodeAt(i);
-    if (!(code > 47 && code < 58) && !(code === 45)) {
-      return false;
-    }
-  }
-  return true;
-}
 
-export default function ScoreInputForm({
-  activeRound,
-  rounds,
-  setRounds,
-  setActiveRound,
-}) {
-  const classes = useStyles();
-  function handleScoreChange(e, playerIndex) {
-    const isValid = isValidInput(e.target.value);
-    if (!isValid) {
-      return false;
-    } else {
-      const tempRounds = [...rounds].map((round, i) => {
-        if (activeRound === i) {
-          if (e.target.value === "") {
-            round.scores[playerIndex].score = "";
-          } else if (typeof Number(e.target.value) === "number") {
-            round.scores[playerIndex].score = Number(e.target.value);
-          } else if (e.target.value === "-") {
-            round.scores[playerIndex].score = "-";
-          }
-        }
-        return round;
-      });
-      setRounds(tempRounds);
-    }
-  }
-
+export default function ScoreInputForm({ rounds, setRounds }) {
   function getTotalScore(playerIndex) {
     return rounds.reduce((acc, curr) => {
       const currPlayer = curr.scores[playerIndex];
@@ -97,55 +57,7 @@ export default function ScoreInputForm({
                   alignItems: "center",
                   paddingBottom: "10px",
                 }}
-              >
-                <form autoComplete="off">
-                  <FormControl>
-                    <InputLabel
-                      htmlFor="input-with-icon-adornment"
-                      style={{ fontSize: "2rem" }}
-                    >
-                      {name}
-                    </InputLabel>
-                    <Input
-                      value={score}
-                      onChange={(e) => handleScoreChange(e, i)}
-                      inputProps={{
-                        min: 0,
-                        style: {
-                          textAlign: "center",
-                          padding: "1em",
-                          fontSize: "2rem",
-                        },
-                      }}
-                      id="input-with-icon-adornment"
-                      startAdornment={
-                        <InputAdornment
-                          position="start"
-                          style={{ display: "flex" }}
-                        >
-                          <Badge
-                            badgeContent={getTotalScore(i)}
-                            color="primary"
-                            showZero
-                            max={999}
-                            anchorOrigin={{
-                              vertical: "top",
-                              horizontal: "right",
-                            }}
-                            classes={{ badge: classes.badge }}
-                          >
-                            <Avatar
-                              alt={name}
-                              src={photo}
-                              className={classes.large}
-                            />
-                          </Badge>
-                        </InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                </form>
-              </div>
+              ></div>
             ))}
           </CardContent>
         </Card>
