@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 
-import NewGameForm from "./components/NewGameForm";
 import MainGameForm from "./components/MainGameForm";
 
 import michellePhoto from "./images/michelle.jpg";
@@ -24,17 +23,11 @@ function getDefaultRoundsData(players) {
 
 function App() {
   const [rounds, setRounds] = useState(getDefaultRoundsData());
-  const [gameStarted, setGameStarted] = useState(false);
 
   return (
     <div className="App">
       <header className="App-header">
-        <NewGameForm
-          gameStarted={gameStarted}
-          setGameStarted={setGameStarted}
-        />
         <MainGameForm
-          gameStarted={gameStarted}
           rounds={rounds}
           setRounds={setRounds}
         />

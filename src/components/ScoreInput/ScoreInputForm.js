@@ -1,10 +1,8 @@
 import React from "react";
 import Input from "@material-ui/core/Input";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
-import RoundButtons from "./RoundButtons";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -49,16 +47,13 @@ export default function ScoreInputForm({
   rounds,
   setRounds,
   setActiveRound,
-  setGameOver,
 }) {
   const classes = useStyles();
   function handleScoreChange(e, playerIndex) {
     const isValid = isValidInput(e.target.value);
     if (!isValid) {
-      console.log(e.target.value);
       return false;
     } else {
-      console.log(e.target.value);
       const tempRounds = [...rounds].map((round, i) => {
         if (activeRound === i) {
           if (e.target.value === "") {
@@ -103,31 +98,6 @@ export default function ScoreInputForm({
                   paddingBottom: "10px",
                 }}
               >
-                {/* <div style={{ display: "flex", alignItems: "center", flex: 3 }}>
-                  <span style={{ marginLeft: "10px" }}>{name}</span>
-                </div> */}
-                {/* <Input
-                  onChange={(e) => handleScoreChange(e, i)}
-                  type="number"
-                  style={{ fontSize: "2.6rem", flex: "1" }}
-                  variant="outlined"
-                  label={name}
-                  value={score}
-                /> */}
-                {/* <TextField
-                  onChange={(e) => handleScoreChange(e, i)}
-                  type="number"
-                  style={{
-                    fontSize: "3.6rem",
-                    flex: 2,
-                    marginLeft: "20px",
-                    marginRight: "20px",
-                  }}
-                  variant="outlined"
-                  // label={name}
-                  value={score}
-                  variant="outlined"
-                /> */}
                 <form autoComplete="off">
                   <FormControl>
                     <InputLabel
@@ -178,14 +148,6 @@ export default function ScoreInputForm({
               </div>
             ))}
           </CardContent>
-          <CardActions>
-            <RoundButtons
-              setGameOver={setGameOver}
-              activeRound={activeRound}
-              rounds={rounds}
-              setActiveRound={setActiveRound}
-            />
-          </CardActions>
         </Card>
       </div>
     </>
