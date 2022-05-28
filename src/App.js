@@ -32,21 +32,6 @@ function App() {
     };
   });
 
-  function isValidInput(str) {
-    var code, i, len;
-    if (str === "") {
-      return true;
-    }
-
-    for (i = 0, len = str.length; i < len; i++) {
-      code = str.charCodeAt(i);
-      if (!(code > 47 && code < 58) && !(code === 45)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   return (
     <div className="App">
       <header className="App-header">

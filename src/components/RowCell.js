@@ -18,25 +18,68 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
     });
   }, [player, setPlayers]);
 
-  function onFocus() {
-    inputRef.current.value = ''
+  function onFocus(e) {
     setPlayers((prev) => {
       return prev.map((oldPlayer, i) => {
-        oldPlayer.rounds[scoreIndex].focused = player.name === oldPlayer.name;
+        if (player.name === oldPlayer.name) {
+          oldPlayer.rounds[scoreIndex].focused = true;
+          oldPlayer.rounds[scoreIndex].score = null;
+        } else {
+          oldPlayer.rounds[scoreIndex].inputRef.current.blur();
+          oldPlayer.rounds[scoreIndex].focused = false;
+        }
+
         return oldPlayer;
       });
     });
   }
 
-  function onChange() {
+  function isValidInput(str) {
+    var code, i, len;
+    if (str === "") {
+      return true;
+    }
 
+    for (i = 0, len = str.length; i < len; i++) {
+      code = str.charCodeAt(i);
+      if (!(code > 47 && code < 58) && !(code === 45)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function onChange(e) {
+    setPlayers((prev) => {
+      return prev.map((oldPlayer, i) => {
+        if (player.name === oldPlayer.name) {
+          oldPlayer.rounds[scoreIndex].focused = true;
+          if (isValidInput(e.target.value)) {
+            console.log(e.target.value);
+            oldPlayer.rounds[scoreIndex].score = e.target.value;
+          }
+        }
+
+        return oldPlayer;
+      });
+    });
   }
 
   return (
-    <Paper sx={{ m: 3, p: 2, width: "50px" }}>
+    <Paper
+      sx={{
+        m: 3,
+        p: 2,
+        width: "50px",
+        boxShadow:
+          player?.rounds[scoreIndex]?.focused &&
+          "inset 0px 0px 0px 3px darkblue",
+      }}
+    >
       <Input
-      sx={{fontSize: '38px'}}
+        sx={{ fontSize: "38px" }}
         defaultValue={0}
+        value={player.rounds[scoreIndex]?.score || ""}
         onChange={onChange}
         onFocus={onFocus}
         inputRef={inputRef}
