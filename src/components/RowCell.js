@@ -35,6 +35,7 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
   }
 
   function isValidInput(str) {
+
     var code, i, len;
     if (str === "") {
       return true;
@@ -42,10 +43,20 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
 
     for (i = 0, len = str.length; i < len; i++) {
       code = str.charCodeAt(i);
+
       if (!(code > 47 && code < 58) && !(code === 45)) {
         return false;
       }
+      if (code === 45 && i !== 0) {
+        return false;
+      }
     }
+
+    // if (str.charCodeAt(0) !== 45) {
+    //   const test = parseInt(str)
+    //   return true;
+    // }
+
     return true;
   }
 
