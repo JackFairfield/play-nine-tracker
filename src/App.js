@@ -8,9 +8,13 @@ import michellePhoto from "./images/michelle.jpg";
 import lexyPhoto from "./images/lexy.jpg";
 import jackPhoto from "./images/jack.jpg";
 
+import grassBorder from "./images/grass-border.png";
+
 import Grid from "@mui/material/Grid";
 import PlayerRow from "./components/PlayerRow";
 import NumberRow from "./components/NumberRow";
+
+import CurrentScore from './components/CurrentScore'
 
 import arrowKeyHandler from "./arrowKeyHandler";
 
@@ -34,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header"> */}
         <Paper>
           <NumberRow />
           {players.map((player, i) => (
@@ -47,7 +51,9 @@ function App() {
             </div>
           ))}
         </Paper>
-      </header>
+        <CurrentScore players={players}/>
+      {/* </header> */}
+      
     </div>
   );
 }
