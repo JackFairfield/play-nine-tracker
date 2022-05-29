@@ -38,7 +38,7 @@ function App() {
         <Paper>
           <NumberRow />
           {players.map((player, i) => (
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div key={i} style={{ display: "flex", alignItems: "center" }}>
               <PlayerBadge player={player} />
               <Grid container spacing={2}>
                 <PlayerRow player={player} setPlayers={setPlayers} />

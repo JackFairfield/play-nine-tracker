@@ -16,17 +16,20 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
         return oldPlayer;
       });
     });
-  }, [player, setPlayers]);
+  }, [player, setPlayers, scoreIndex]);
 
   function onFocus(e) {
     setPlayers((prev) => {
       return prev.map((oldPlayer, i) => {
+        Object.keys(oldPlayer.rounds).forEach((key) => {
+          if (key !== scoreIndex) {
+            oldPlayer.rounds[key].focused = false;
+          }
+        });
+
         if (player.name === oldPlayer.name) {
           oldPlayer.rounds[scoreIndex].focused = true;
           oldPlayer.rounds[scoreIndex].score = null;
-        } else {
-          oldPlayer.rounds[scoreIndex].inputRef.current.blur();
-          oldPlayer.rounds[scoreIndex].focused = false;
         }
 
         return oldPlayer;
@@ -34,8 +37,18 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
     });
   }
 
-  function isValidInput(str) {
+  function onBlur(e){
+    setPlayers((prev) => {
+      return prev.map((oldPlayer, i) => {
+        if (player.name === oldPlayer.name) {
+          oldPlayer.rounds[scoreIndex].focused = false;
+        }
+        return oldPlayer;
+      });
+    });
+  }
 
+  function isValidInput(str) {
     var code, i, len;
     if (str === "") {
       return true;
@@ -51,12 +64,6 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
         return false;
       }
     }
-
-    // if (str.charCodeAt(0) !== 45) {
-    //   const test = parseInt(str)
-    //   return true;
-    // }
-
     return true;
   }
 
@@ -66,15 +73,33 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
         if (player.name === oldPlayer.name) {
           oldPlayer.rounds[scoreIndex].focused = true;
           if (isValidInput(e.target.value)) {
-            console.log(e.target.value);
-            oldPlayer.rounds[scoreIndex].score = e.target.value;
+            const val = parseInt(e.target.value);
+            if (isNaN(val)) {
+              if (e.target.value === "-") {
+                oldPlayer.rounds[scoreIndex].score = "-";
+              }
+              if (e.target.value === "") {
+                oldPlayer.rounds[scoreIndex].score = "";
+              }
+            } else {
+              if (val <= 99 && val >= -100) {
+                oldPlayer.rounds[scoreIndex].score = val;
+              }
+            }
           }
         }
-
         return oldPlayer;
       });
     });
   }
+
+  const scoreObj = player.rounds[scoreIndex];
+  const score =
+    scoreObj &&
+    scoreObj.score !== null &&
+    (!isNaN(scoreObj.score) || scoreObj.score === "-")
+      ? scoreObj.score
+      : "";
 
   return (
     <Paper
@@ -89,9 +114,9 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
     >
       <Input
         sx={{ fontSize: "38px" }}
-        defaultValue={0}
-        value={player.rounds[scoreIndex]?.score || ""}
+        value={score === undefined || score === null ? "" : score}
         onChange={onChange}
+        onBlur={onBlur}
         onFocus={onFocus}
         inputRef={inputRef}
       />
