@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+
+import "./App.scss";
 
 import PlayerBadge from "./components/PlayerBadge";
 import Paper from "@mui/material/Paper";
@@ -14,7 +15,7 @@ import Grid from "@mui/material/Grid";
 import PlayerRow from "./components/PlayerRow";
 import NumberRow from "./components/NumberRow";
 
-import CurrentScore from './components/CurrentScore'
+import CurrentScore from "./components/CurrentScore";
 
 import arrowKeyHandler from "./arrowKeyHandler";
 
@@ -39,21 +40,20 @@ function App() {
   return (
     <div className="App">
       {/* <header className="App-header"> */}
-        <Paper>
-          <NumberRow />
-          {players.map((player, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center" }}>
-              <PlayerBadge player={player} />
-              <Grid container spacing={2}>
-                <PlayerRow player={player} setPlayers={setPlayers} />
-              </Grid>
-              <br />
-            </div>
-          ))}
-        </Paper>
-        <CurrentScore players={players}/>
+      <Paper>
+        <NumberRow />
+        {players.map((player, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center" }}>
+            <PlayerBadge player={player} />
+            <Grid container spacing={2}>
+              <PlayerRow player={player} setPlayers={setPlayers} />
+            </Grid>
+            <br />
+          </div>
+        ))}
+      </Paper>
+      <CurrentScore players={players} />
       {/* </header> */}
-      
     </div>
   );
 }
