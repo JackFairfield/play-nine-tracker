@@ -29,7 +29,7 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
 
         if (player.name === oldPlayer.name) {
           oldPlayer.rounds[scoreIndex].focused = true;
-          oldPlayer.rounds[scoreIndex].score = null;
+          // oldPlayer.rounds[scoreIndex].score = null;
         }
 
         return oldPlayer;
@@ -37,7 +37,7 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
     });
   }
 
-  function onBlur(e){
+  function onBlur(e) {
     setPlayers((prev) => {
       return prev.map((oldPlayer, i) => {
         if (player.name === oldPlayer.name) {
@@ -109,7 +109,7 @@ export default function RowCell({ player, setPlayers, scoreIndex }) {
         width: "50px",
         boxShadow:
           player?.rounds[scoreIndex]?.focused &&
-          "inset 0px 0px 0px 3px darkblue",
+          "inset 0px 0px 0px 3px darkblue !important",
       }}
     >
       <Input

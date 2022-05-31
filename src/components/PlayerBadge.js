@@ -5,7 +5,7 @@ export default function PlayerBadge({ player }) {
     <Avatar
       alt={player.name}
       src={player.photo}
-      style={{ width: 56, height: 56, marginRight: "30px", marginLeft: "30px" }}
+      style={{ width: 80, height: 80, marginRight: "30px", marginLeft: "30px" }}
     />
   );
 }

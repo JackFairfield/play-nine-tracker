@@ -1,3 +1,35 @@
+html,
 body {
-  background-color: aqua;
+  height: 100%;
+  margin: 0;
+  background-image: url("./images/grass-border.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  bottom: 0;
+  background-color: rgba(225, 225, 225, 0.4);
+}
+
+.main-area {
+  width: 90%;
+  margin: auto;
+  background-color: #f6f3e7 !important;
+  border: 3px solid gray;
+}
+
+.current-score {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  padding: 10px;
+  height: 150px;
+  background-color: lightblue !important;
+}
+
+.player-score {
+  flex: 1;
+  height: 100%;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
 }
