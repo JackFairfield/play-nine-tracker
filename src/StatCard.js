@@ -7,7 +7,6 @@ import imgs from "./images/index";
 
 export default function StatCard({ data, totalCount }) {
   const avgScore = data.totalPoints / totalCount;
-  console.log(data);
   const bestGame = Math.min(...data.gameScores);
   const worstGame = Math.max(...data.gameScores);
 
