@@ -5,23 +5,19 @@ import "./App.scss";
 import PlayerBadge from "./components/PlayerBadge";
 import Paper from "@mui/material/Paper";
 
-import michellePhoto from "./images/michelle.jpg";
-import lexyPhoto from "./images/lexy.jpg";
-import jackPhoto from "./images/jack.jpg";
-
 import Grid from "@mui/material/Grid";
 import PlayerRow from "./components/PlayerRow";
 import NumberRow from "./components/NumberRow";
 
 import CurrentScore from "./components/CurrentScore";
-
 import arrowKeyHandler from "./arrowKeyHandler";
+import imgs from "./images/index";
 
 function App() {
   const [players, setPlayers] = useState([
-    { name: "Jack", photo: jackPhoto, rounds: {} },
-    { name: "Michelle", photo: michellePhoto, rounds: {} },
-    { name: "Lexy", photo: lexyPhoto, rounds: {} },
+    { name: "Jack", photo: imgs.jack, rounds: {} },
+    { name: "Michelle", photo: imgs.michelle, rounds: {} },
+    { name: "Lexy", photo: imgs.lexy, rounds: {} },
   ]);
 
   function downHandler(e) {
