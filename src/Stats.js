@@ -35,8 +35,10 @@ export default function Stats() {
           wins: 0,
           name: player.name,
           bestRound,
+          gameScores: [],
         };
         sum[player.name].totalPoints += playerGameTotal;
+        sum[player.name].gameScores.push(playerGameTotal);
       });
 
       sum[winningPlayer].wins++;

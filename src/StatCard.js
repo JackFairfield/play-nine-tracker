@@ -7,6 +7,10 @@ import imgs from "./images/index";
 
 export default function StatCard({ data, totalCount }) {
   const avgScore = data.totalPoints / totalCount;
+  console.log(data);
+  const bestGame = Math.min(...data.gameScores);
+  const worstGame = Math.max(...data.gameScores);
+
   return (
     <Card sx={{ ml: 3, mr: 3, flex: 1 }}>
       <CardHeader title={data.name} subheader={``} />
@@ -19,9 +23,11 @@ export default function StatCard({ data, totalCount }) {
       />
       <CardContent>
         <div variant="body2" color="text.secondary">
-          <h2>Number of wins: {data.wins}</h2>
-          <h2>Average Score: {Math.floor(avgScore)}</h2>
-          <h2>Best Round Ever: {data.bestRound}</h2>
+          <h2 style={{ margin: 0 }}>Number of wins: {data.wins}</h2>
+          <h2 style={{ margin: 0 }}>Average Score: {Math.floor(avgScore)}</h2>
+          <h2 style={{ margin: 0 }}>Best Round Ever: {data.bestRound}</h2>
+          <h2 style={{ margin: 0 }}>Best Game Ever: {bestGame}</h2>
+          <h2 style={{ margin: 0 }}>Worst Game Ever: {worstGame}</h2>
         </div>
       </CardContent>
     </Card>
