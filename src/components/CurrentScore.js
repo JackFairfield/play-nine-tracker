@@ -3,8 +3,11 @@ import React from "react";
 import PlayerTotalScore from "./PlayerTotalScore";
 import Button from "@mui/material/Button";
 import { writeToDb } from "../writeToDb";
+import { useNavigate } from "react-router-dom";
 
 export default function CurrentScore({ players }) {
+  const navigate = useNavigate();
+
   function onClick() {
     writeToDb(players).then((written) => {
       if (written) {
@@ -15,25 +18,41 @@ export default function CurrentScore({ players }) {
       }
     });
   }
+
+  function viewStatsClicked() {
+    navigate("/stats");
+  }
+
   return (
     <Paper className="current-score">
       {players.map((player, i) => (
         <PlayerTotalScore key={i} className="player-score" player={player} />
       ))}
-      <Button
-        onClick={onClick}
-        variant="contained"
-        color="success"
-        sx={{
+      <div
+        style={{
           flex: 1,
-          height: "70px",
+
           margin: "auto",
           fontSize: "30px",
           width: "70%",
         }}
       >
-        Save Game
-      </Button>
+        <Button
+          onClick={onClick}
+          variant="contained"
+          color="success"
+          sx={{ width: "100%", height: "50px", mb: 2 }}
+        >
+          Save Game
+        </Button>
+        <Button
+          sx={{ width: "100%", height: "50px" }}
+          onClick={viewStatsClicked}
+          variant="contained"
+        >
+          View Stats
+        </Button>
+      </div>
     </Paper>
   );
 }

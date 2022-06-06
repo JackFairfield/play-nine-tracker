@@ -13,8 +13,6 @@ import Grid from "@mui/material/Grid";
 import PlayerRow from "./components/PlayerRow";
 import NumberRow from "./components/NumberRow";
 
-import { getPastGames } from "./writeToDb";
-
 import CurrentScore from "./components/CurrentScore";
 
 import arrowKeyHandler from "./arrowKeyHandler";
@@ -32,9 +30,6 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("keydown", downHandler);
-    getPastGames().then((games) => {
-      console.log(games);
-    });
     return () => {
       window.removeEventListener("keydown", downHandler);
     };
