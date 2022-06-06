@@ -4,7 +4,6 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Badge from "@mui/material/Badge";
 
 export default function RecipeReviewCard({ data, totalCount }) {
   const avgScore = data.totalPoints / totalCount;

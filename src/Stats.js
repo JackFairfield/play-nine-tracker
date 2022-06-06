@@ -12,7 +12,6 @@ export default function Stats() {
   useEffect(() => {
     const sum = {};
     games.forEach((game) => {
-      const totalScores = {};
       let winningScore = 999;
       let winningPlayer = "";
 
@@ -49,7 +48,7 @@ export default function Stats() {
     getPastGames().then((_games) => {
       setGames(_games);
     });
-  }, [getPastGames]);
+  }, []);
 
   function buttonClicked() {
     navigate("/");
