@@ -22,6 +22,9 @@ export default function CurrentScore({ players }) {
   function viewStatsClicked() {
     navigate("/stats");
   }
+  function viewChartClicked() {
+    navigate("/chart");
+  }
 
   return (
     <Paper className="current-score">
@@ -45,13 +48,30 @@ export default function CurrentScore({ players }) {
         >
           Save Game
         </Button>
-        <Button
-          sx={{ width: "100%", height: "50px" }}
-          onClick={viewStatsClicked}
-          variant="contained"
+        <div
+          style={{
+            width: "100%",
+            height: "50px",
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "10px",
+          }}
         >
-          View Stats
-        </Button>
+          <Button
+            sx={{ width: "50%", height: "50px" }}
+            onClick={viewStatsClicked}
+            variant="contained"
+          >
+            Stats
+          </Button>
+          <Button
+            sx={{ width: "50%", height: "50px", right: 0 }}
+            onClick={viewChartClicked}
+            variant="contained"
+          >
+            Chart
+          </Button>
+        </div>
       </div>
     </Paper>
   );
