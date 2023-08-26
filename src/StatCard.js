@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import imgs from "./images/index";
 
 export default function StatCard({ data, totalCount }) {
+  console.log(data, totalCount);
   const avgScore = data.totalPoints / totalCount;
   const bestGame = Math.min(...data.gameScores);
   const worstGame = Math.max(...data.gameScores);

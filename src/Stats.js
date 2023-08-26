@@ -11,6 +11,7 @@ export default function Stats() {
 
   useEffect(() => {
     const sum = {};
+
     games.forEach((game) => {
       let winningScore = 999;
       let winningPlayer = "";
@@ -30,6 +31,7 @@ export default function Stats() {
           winningScore = playerGameTotal;
           winningPlayer = player.name;
         }
+
         sum[player.name] = sum[player.name] || {
           totalPoints: 0,
           wins: 0,
@@ -39,6 +41,10 @@ export default function Stats() {
         };
         sum[player.name].totalPoints += playerGameTotal;
         sum[player.name].gameScores.push(playerGameTotal);
+
+        if (bestRound < sum[player.name].bestRound) {
+          sum[player.name].bestRound = bestRound;
+        }
       });
 
       sum[winningPlayer].wins++;
